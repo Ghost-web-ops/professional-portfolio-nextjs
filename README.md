@@ -2,7 +2,7 @@
 
 This repository contains the source code for my professional portfolio website, rebuilt from the ground up using a modern, high-performance tech stack. The goal was to create a fast, accessible, and visually appealing site that showcases my skills as a Full-Stack Developer.
 
-**➡️ Live Demo:** [Add Your Vercel Link Here After Deployment]
+**➡️ Live Demo:** [\[Add Your Vercel Link Here After Deployment\]](https://professional-portfolio-nextjs-theta.vercel.app/#about)
 
 ---
 
