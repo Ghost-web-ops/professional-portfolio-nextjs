@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="container mx-auto py-15">
+      <section id="about" className="container mx-auto p-15 mb-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display text-primary">
             About Me
@@ -79,7 +79,7 @@ export default function Home() {
 
       {/* Skills Section */}
 
-      <section id="skills" className="container mx-auto py-20 text-center">
+      <section id="skills" className="container mx-auto py-20 text-center mb-20">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display">
           My Tech Stack & Tools
         </h2>
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="container mx-auto py-20 text-center">
+      <section id="projects" className="container mx-auto py-20 text-center mb-10">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display">
           My Featured Projects
         </h2>
