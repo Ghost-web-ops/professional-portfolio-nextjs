@@ -1,3 +1,11 @@
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -44,22 +52,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="container mx-auto p-15 mb-20">
-        <div className="text-center mb-12">
+      {/* About Me Section - النسخة النهائية والمتجاوبة */}
+      <section id="about" className=" container mx-auto lg:px-26 px-4 py-24">
+        <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display text-primary">
             About Me
           </h2>
         </div>
-        <div className="grid items-center gap-12 md:grid-cols-2 mx-16">
-          <div className="flex justify-center">
+        {/* استخدام flexbox للمرونة وسهولة التحكم */}
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          {/* Image Column */}
+          <div className="flex-shrink-0">
             <Image
               src="https://i.ibb.co/Sw12MGkM/1739318797084.jpg"
               alt="Omar Yasser - Full-Stack Developer"
-              width={300}
-              height={300}
-              className="h-[300px] w-[300px] rounded-full object-cover border-4 border-primary/50"
+              width={250} // حجم أصغر للموبايل
+              height={250}
+              className="h-[250px] w-[250px] md:h-[300px] md:w-[300px] rounded-full object-cover border-4 border-primary/50"
             />
           </div>
+
+          {/* Text Column */}
           <div className="text-center md:text-left">
             <p className="text-lg text-foreground">
               Full-stack developer passionate about building seamless digital
@@ -79,7 +92,10 @@ export default function Home() {
 
       {/* Skills Section */}
 
-      <section id="skills" className="container mx-auto py-20 text-center mb-20">
+      <section
+        id="skills"
+        className="container mx-auto py-20 text-center mb-20"
+      >
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display">
           My Tech Stack & Tools
         </h2>
@@ -141,101 +157,324 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="container mx-auto py-20 text-center mb-10">
+      <section id="projects" className="container mx-auto py-20 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display">
           My Featured Projects
         </h2>
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 mx-10">
-          <Card className="overflow-hidden text-left">
-            <CardHeader className="p-0">
-              <div className="h-48 w-full bg-card-foreground ">
-                
-              </div>
-            </CardHeader>
-            <CardContent className="pt-4 ">
-              <CardTitle className="mb-2">BudgetWise App</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                A full-stack expense tracker with user authentication, built
-                with Next.js, Node.js, and PostgreSQL.
-              </p>
-            </CardContent>
-            <CardFooter className="flex gap-4">
-              <Button asChild variant="secondary">
-                <Link href="#">Code</Link>
-              </Button>
-              <Button asChild>
-                <Link href="#">Live Demo</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="overflow-hidden text-left">
-            <CardHeader className="p-0">
-              <div className="h-48 w-full bg-card-foreground">
-                {" "}
-                <Image
-                  src="https://i.ibb.co/5XBkM4wM/Screenshot-2025-07-18-220451.png"
-                  alt="Modern Blog project"
-                  width={470}
-                  height={470}
-                />
-              </div>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <CardTitle className="mb-2">Modern Blog</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                A high-performance blog frontend built with Next.js and a
-                headless CMS (Ghost API).
-              </p>
-            </CardContent>
-            <CardFooter className="flex gap-4">
-              <Button asChild variant="secondary">
-                <Link href="https://github.com/Ghost-web-ops/blog-frontend-nextjs">
-                  Code
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href="https://fullstack-blog-nextjs-rouge.vercel.app/">
-                  Live Demo
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="overflow-hidden text-left">
-            <CardHeader className="p-0">
-              <div className="h-48 w-full bg-card-foreground">
-                 <Image
-                  src="https://i.ibb.co/PGFQf6mZ/Screenshot-2025-06-24-103153.png"
-                  alt="Old Portfolio project"
-                  width={470}
-                  height={470}
-                />
-              </div>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <CardTitle className="mb-2">Old Portfolio</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                My first portfolio website, built with vanilla HTML, CSS, and
-                JavaScript, featuring a custom dark/light mode toggle.
-              </p>
-            </CardContent>
-            <CardFooter className="flex gap-4">
-              <Button asChild variant="secondary">
-                <Link href="https://github.com/Ghost-web-ops/Ghost-web-ops.github.io">
-                  Code
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link href="https://ghost-web-ops.github.io/">Live Demo</Link>
-              </Button>
-            </CardFooter>
-          </Card>
+        <div className="mt-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-sm md:max-w-xl lg:max-w-4xl mx-auto"
+          >
+            <CarouselContent>
+              {/* Project Card 1: BudgetWise */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/6RLdjGm3/Budget-wise-thumbnail.png"
+                        alt="Modern Blog project"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className=" flex-grow">
+                      <CardTitle className="mb-2">BudgetWise App</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A full-stack expense tracker with user authentication,
+                        built with Next.js, Node.js, and PostgreSQL.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link href="https://github.com/Ghost-web-ops/blog-frontend-nextjs">Code (Frontend)</Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://fullstack-blog-nextjs-rouge.vercel.app/">Live Demo</Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+
+              {/* Project Card 2: Modern Blog */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/5XBkM4wM/Screenshot-2025-07-18-220451.png"
+                        alt="Modern Blog project"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardTitle className="mb-2">Modern Blog</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A high-performance blog frontend built with Next.js and
+                        a headless CMS (Ghost API).
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link href="https://github.com/Ghost-web-ops/blog-frontend-nextjs">
+                          Code (Frontend)
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://fullstack-blog-nextjs-rouge.vercel.app/">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+
+              {/* Project Card 3: Old Portfolio */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/PGFQf6mZ/Screenshot-2025-06-24-103153.png"
+                        alt="Old Portfolio project"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardTitle className="mb-2">Old Portfolio</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        My first portfolio website, built with vanilla HTML,
+                        CSS, and JavaScript, featuring a custom dark/light mode
+                        toggle.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link href="https://github.com/Ghost-web-ops/Ghost-web-ops.github.io">
+                          Code
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://ghost-web-ops.github.io/">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+              {/* Project Card 4: Digital Products Store */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      {/* استخدم الصورة المصغرة التي صممناها هنا */}
+                      <Image
+                        src="https://i.ibb.co/mrCMKKqb/digital-stor-thumbnail.png"
+                        alt="Digital Products E-commerce Store"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardTitle className="mb-2">
+                        Digital E-commerce Store
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A full-stack e-commerce platform for digital products,
+                        built with Next.js, Node.js, Prisma, and Stripe
+                        integration.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link href="https://github.com/Ghost-web-ops/budgetwise-client">
+                          Code (Frontend)
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://digital-store-client.vercel.app/ar">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/GfScn4Xv/kanban-thumbnail.png"
+                        alt="TaskFlow Project"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="pt-4 flex-grow">
+                      <CardTitle className="mb-2">
+                        TaskFlow - Project Management App
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A full-stack Trello-like application for managing
+                        projects and tasks, built with React, Node.js, and
+                        PostgreSQL.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link
+                          href="https://github.com/Ghost-web-ops/task-manager-frontend"
+                          target="_blank"
+                        >
+                          Code (Frontend)
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://task-manager-frontend-alna.vercel.app" target="_blank">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/yBkzhLSQ/1.png"
+                        alt="MovieFinder App"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="pt-4 flex-grow">
+                      <CardTitle className="mb-2">MovieFinder App</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A responsive movie discovery web app using the TMDB API,
+                        built with Next.js and featuring search and pagination.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link href="https://github.com/Ghost-web-ops/movie-finder-app-nextjs" target="_blank">
+                          Code
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://movie-finder-app-nextjs.vercel.app" target="_blank">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/xSt01jjK/Screenshot-2025-07-04-095557.png"
+                        alt="LandingEase Project"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="pt-4 flex-grow">
+                      <CardTitle className="mb-2">
+                        LandingEase - Responsive Page
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A clean and modern responsive landing page built with
+                        Next.js, TypeScript, and Tailwind CSS.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link
+                          href="https://github.com/Ghost-web-ops/Simple-page"
+                          target="_blank"
+                        >
+                          Code
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link
+                          href="https://simple-page-six.vercel.app/"
+                          target="_blank"
+                        >
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="overflow-hidden text-left h-full flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image
+                        src="https://i.ibb.co/TD5ZTvrz/modern-weather-dashboard-vercel-app.png"
+                        alt="Weather Dashboard"
+                        width={470}
+                        height={470}
+                        className="w-80 h-50"
+                      />
+                    </CardHeader>
+                    <CardContent className="pt-4 flex-grow">
+                      <CardTitle className="mb-2">Weather Dashboard</CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        A responsive weather dashboard that fetches and displays
+                        live data from a third-party API.
+                      </p>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button asChild variant="secondary" className="w-auto">
+                        <Link
+                          href="https://github.com/Ghost-web-ops/modern-weather-dashboard"
+                          target="_blank"
+                        >
+                          Code
+                        </Link>
+                      </Button>
+                      <Button asChild className="w-auto">
+                        <Link href="https://modern-weather-dashboard.vercel.app/" target="_blank">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
+          </Carousel>
         </div>
       </section>
 
       {/* Contact Section */}
-      {/* ================================================================== */}
-      {/* Contact Section - انسخ هذا الجزء بالكامل */}
-      {/* ================================================================== */}
       <section id="contact" className="container mx-auto py-24 text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl font-display text-primary">
           Get In Touch
